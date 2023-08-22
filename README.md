@@ -4,7 +4,7 @@ This is a brief deep-dive on the friend.tech frontend/API that aims to list out 
 
 I hope this is useful to people trying to learn more about friend.tech or building on top of it. I'll keep updating the list as I find more endpoints and if you would like to contribute, please open an issue/PR.
 
-The root API URL is <https://prod-api.kosetto.com/>.
+The root API URL is <https://prod-api.kosetto.com>.
 
 ## Endpoints
 
