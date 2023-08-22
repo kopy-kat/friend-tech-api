@@ -16,7 +16,7 @@ Get details about a user by address.
 
 **Method** : `GET`
 
-**Auth required** : NO
+**Auth required** : No
 
 **Response example**
 
@@ -45,7 +45,7 @@ Gets a history of trades for a user.
 
 **Method** : `GET`
 
-**Auth required** : NO
+**Auth required** : No
 
 **Response example**
 
@@ -85,7 +85,7 @@ Gets a history of friends-related activity for a user.
 
 **Method** : `GET`
 
-**Auth required** : NO
+**Auth required** : No
 
 **Response example**
 
@@ -117,6 +117,42 @@ Gets a history of friends-related activity for a user.
 }
 ```
 
+### Portfolio
+
+Gets a history of friends-related activity for a user.
+
+**URL** : `/portfolio/[ADDRESS]`
+
+**Method** : `GET`
+
+**Auth required** : Yes
+
+**Response example**
+
+```json
+{
+  "holdings": [
+    {
+      "pfpUrl": "https://pbs.twimg.com/profile_images/1687362497475465216/OPxBMpIw.png",
+      "username": "abstractooor",
+      "name": "konradkopp.eth",
+      "subject": "0xf0b10ec1a5694b2b4305ae7b6d14c5d6024ac72c",
+      "chatRoomId": "0xf0b10ec1a5694b2b4305ae7b6d14c5d6024ac72c",
+      "price": "250000000000000",
+      "balance": "1",
+      "balanceEthValue": "250000000000000",
+      "lastOnline": null,
+      "lastMessageName": "...",
+      "lastMessageTime": "1692689898270",
+      "lastMessageText": "...",
+      "lastRead": "1692632808671"
+    }
+  ],
+  "portfolioValueWei": "250000000000000",
+  "nextPageStart": 1000
+}
+```
+
 ### Points
 
 Gets the points for a user (potentially used for an airdrop).
@@ -125,7 +161,7 @@ Gets the points for a user (potentially used for an airdrop).
 
 **Method** : `GET`
 
-**Auth required** : NO
+**Auth required** : No
 
 **Response example**
 
@@ -137,6 +173,38 @@ Gets the points for a user (potentially used for an airdrop).
 }
 ```
 
+### Used code
+
+Returns whether a user has used an invite code.
+
+**URL** : `/used-code`
+
+**Method** : `GET`
+
+**Auth required** : Yes
+
+**Response example**
+
+```json
+{ "isAddressInvited": true }
+```
+
+### Chatroom enabled
+
+Returns whether a user has used an invite code.
+
+**URL** : `/notifications/chatRooms/[ADDRESS]`
+
+**Method** : `GET`
+
+**Auth required** : No
+
+**Response example**
+
+```json
+{ "isEnabled": true }
+```
+
 ### Users by id
 
 Gets a user by their id.
@@ -145,7 +213,7 @@ Gets a user by their id.
 
 **Method** : `GET`
 
-**Auth required** : NO
+**Auth required** : No
 
 **Response example**
 
@@ -170,7 +238,7 @@ Search users by their twitter handle.
 
 **Method** : `GET`
 
-**Auth required** : YES (as of 21/08)
+**Auth required** : Yes (as of 21/08) (see below for retrieving your auth token)
 
 **Curl example**
 
@@ -310,3 +378,15 @@ Gets the contract config previously used for the Kosetto NFT (rugged).
   "gachaLaunchMs": 1674282060000
 }
 ```
+
+## Getting the auth token
+
+1. Open the friend.tech website on your browser
+2. Open the developer tools
+3. Go to the application tab
+4. Under the storage section, click on the Local Storage dropdown and find the `friend.tech` entry
+5. Copy the value of the `jwt` key
+
+## Pagination
+
+Unclear so far how pagination works. Using the common query params `?start=`, `?page=` and `?p=` doesn't seem to work.
