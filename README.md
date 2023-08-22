@@ -387,6 +387,14 @@ Gets the contract config previously used for the Kosetto NFT (rugged).
 4. Under the storage section, click on the Local Storage dropdown and find the `friend.tech` entry
 5. Copy the value of the `jwt` key
 
+## Error codes
+
+When hitting an unknown API endpoint, the following error is returned instead of the standard 404. Seeing this error does not mean a lack of access but that an unkown route is hit:
+
+```json
+Unauthorized
+```
+
 ## Pagination
 
 Unclear so far how pagination works. Using the common query params `?start=`, `?page=` and `?p=` doesn't seem to work.
