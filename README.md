@@ -189,6 +189,22 @@ Returns whether a user has used an invite code.
 { "isAddressInvited": true }
 ```
 
+### Gating state
+
+Returns whether a user is accepted (unknown what this entails - could be a way to blacklist users).
+
+**URL** : `/gating-state/[ADDRESS]`
+
+**Method** : `GET`
+
+**Auth required** : Yes
+
+**Response example**
+
+```json
+{ "isAccepted": true }
+```
+
 ### Chatroom enabled
 
 Returns whether a user has used an invite code.
@@ -329,6 +345,34 @@ Gets a list of users by their token price
       "displayPrice": "3025000000000000000",
       "holderCount": 149,
       "shareSupply": 219
+    }
+  ]
+}
+```
+
+### Trending
+
+Gets a list of trending users
+
+**URL** : `/lists/trending`
+
+**Method** : `GET`
+
+**Auth required** : No
+
+**Response example**
+
+```json
+{
+  "users": [
+    {
+     "twitterUsername": "Christianeth",
+     "twitterName": "Christian2022.mid",
+     "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1693173548796563456/Z6Qj2ETo_400x400.jpg",
+     "lastOnline": 0,
+     "displayPrice": "1580062500000000000",
+     "volume": "27606875000000000000",
+     "netBuy": "27606875000000000000"
     }
   ]
 }
