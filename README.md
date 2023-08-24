@@ -431,6 +431,8 @@ Gets the contract config previously used for the Kosetto NFT (rugged).
 4. Under the storage section, click on the Local Storage dropdown and find the `friend.tech` entry
 5. Copy the value of the `jwt` key
 
+Alternatively, follow [this guide](https://github.com/ColinPlatt/friendTechLogin) to create a new Privy wallet and extract the JWT from it.
+
 ## Error codes
 
 When hitting an unknown API endpoint, the following error is returned instead of the standard 404. Seeing this error does not mean a lack of access but that an unkown route is hit:
