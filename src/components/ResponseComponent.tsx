@@ -60,11 +60,12 @@ const endpoints = [
 ];
 
 const ResponseComponent: React.FC<Props> = ({ response, onSendRequest }) => {
-    const [activeTab, setActiveTab] = useState<'json' | 'tree'>('json');
+    const [activeTab, setActiveTab] = useState<'json' | 'tree' | 'rendered'>('json');
     const [selectedEndpoint, setSelectedEndpoint] = useState(endpoints[0].value);
     const [address, setAddress] = useState('');
     const [authToken, setAuthToken] = useState('');
     const [username, setUsername] = useState('');
+    const [selectedNode, setSelectedNode] = useState<any>(response);
 
     const handleRequest = () => {
         const endpointConfig = endpoints.find((endpoint) => endpoint.value === selectedEndpoint);
@@ -81,15 +82,45 @@ const ResponseComponent: React.FC<Props> = ({ response, onSendRequest }) => {
         onSendRequest(selectedEndpoint, parameters);
     };
 
+    // A recursive function to render data as cards
+    const renderData = (data: any) => {
+        return Object.keys(data).map((key) => (
+            <div key={key} className="mb-2">
+                {typeof data[key] === 'object' && data[key] !== null ? (
+                    <div className="p-4 rounded mb-4">
+                        <h3 className="font-bold">{key}</h3>
+                        {renderData(data[key])}
+                        <hr />
+                    </div>
+                ) : (
+                    <div className="flex items-center">
+                        <span className="font-bold mr-2">{key}:</span>
+                        {key.toLowerCase().includes('url') && typeof data[key] === 'string' ? (
+                            <img src={data[key]} alt={key} className="w-12 h-12 rounded" />
+                        ) : (
+                            <span>{data[key]}</span>
+                        )}
+                    </div>
+                )}
+            </div>
+        ));
+    };
+
+    const renderCards = () => {
+        return Array.isArray(response) ? (
+            response.map((item, index) => <div key={index}>{renderData(item)}</div>)
+        ) : (
+            <div>{renderData(response)}</div>
+        );
+    };
+
     const renderContent = () => {
         if (activeTab === 'json') {
-            return (
-                <pre className="whitespace-pre-wrap break-all">
-                    {JSON.stringify(response, null, 2)}
-                </pre>
-            );
+            return <pre className="whitespace-pre-wrap break-all">{JSON.stringify(response, null, 2)}</pre>;
         } else if (activeTab === 'tree') {
             return <ReactJson src={response} enableClipboard={false} displayDataTypes={false} />;
+        } else if (activeTab === 'rendered') {
+            return renderCards();
         }
     };
 
@@ -170,6 +201,13 @@ const ResponseComponent: React.FC<Props> = ({ response, onSendRequest }) => {
                 >
                     Tree
                 </button>
+                <button
+                    onClick={() => setActiveTab('rendered')}
+                    className={activeTab === 'rendered' ? 'font-bold' : ''}
+                >
+                    Rendered
+                </button>
+
             </div>
             <div className="text-sm md:text-base bg-gray-100 dark:bg-gray-700 p-4 rounded overflow-x-auto text-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 max-h-[800px] overflow-y-auto">
                 {renderContent()}
