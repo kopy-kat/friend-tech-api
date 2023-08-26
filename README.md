@@ -6,6 +6,10 @@ I hope this is useful to people trying to learn more about friend.tech or buildi
 
 The root API URL is <https://prod-api.kosetto.com>.
 
+## API Demo Client
+
+Check out the [`/api-demo-client`](/api-demo-client) folder to host a demo client that allows you to more interactively fetch data from the friendtech API. Kudos to [BankkRoll](https://github.com/BankkRoll) for building the demo client.
+
 ## Endpoints
 
 ### User
@@ -16,24 +20,24 @@ Get details about a user by address.
 
 **Method** : `GET`
 
-**Auth required** : No
+**Auth required** : Yes
 
 **Response example**
 
 ```json
 {
-  "id": 903,
-  "address": "0x4e5f7e4a774bd30b9bdca7eb84ce3681a71676e1",
-  "twitterUsername": "cobie",
-  "twitterName": "Cobie",
-  "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1688496375707701248/WwWz33DI.jpg",
-  "twitterUserId": "2259434528",
-  "lastOnline": 1691761722180,
-  "holderCount": 158,
-  "holdingCount": 17,
-  "shareSupply": 197,
-  "displayPrice": "2328062500000000000",
-  "lifetimeFeesCollectedInWei": "0"
+    "id": 903,
+    "address": "0x4e5f7e4a774bd30b9bdca7eb84ce3681a71676e1",
+    "twitterUsername": "cobie",
+    "twitterName": "Cobie",
+    "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1688496375707701248/WwWz33DI.jpg",
+    "twitterUserId": "2259434528",
+    "lastOnline": 1691761722180,
+    "holderCount": 158,
+    "holdingCount": 17,
+    "shareSupply": 197,
+    "displayPrice": "2328062500000000000",
+    "lifetimeFeesCollectedInWei": "0"
 }
 ```
 
@@ -131,25 +135,25 @@ Gets a history of friends-related activity for a user.
 
 ```json
 {
-  "holdings": [
-    {
-      "pfpUrl": "https://pbs.twimg.com/profile_images/1687362497475465216/OPxBMpIw.png",
-      "username": "abstractooor",
-      "name": "konradkopp.eth",
-      "subject": "0xf0b10ec1a5694b2b4305ae7b6d14c5d6024ac72c",
-      "chatRoomId": "0xf0b10ec1a5694b2b4305ae7b6d14c5d6024ac72c",
-      "price": "250000000000000",
-      "balance": "1",
-      "balanceEthValue": "250000000000000",
-      "lastOnline": null,
-      "lastMessageName": "...",
-      "lastMessageTime": "1692689898270",
-      "lastMessageText": "...",
-      "lastRead": "1692632808671"
-    }
-  ],
-  "portfolioValueWei": "250000000000000",
-  "nextPageStart": 1000
+    "holdings": [
+        {
+            "pfpUrl": "https://pbs.twimg.com/profile_images/1687362497475465216/OPxBMpIw.png",
+            "username": "abstractooor",
+            "name": "konradkopp.eth",
+            "subject": "0xf0b10ec1a5694b2b4305ae7b6d14c5d6024ac72c",
+            "chatRoomId": "0xf0b10ec1a5694b2b4305ae7b6d14c5d6024ac72c",
+            "price": "250000000000000",
+            "balance": "1",
+            "balanceEthValue": "250000000000000",
+            "lastOnline": null,
+            "lastMessageName": "...",
+            "lastMessageTime": "1692689898270",
+            "lastMessageText": "...",
+            "lastRead": "1692632808671"
+        }
+    ],
+    "portfolioValueWei": "250000000000000",
+    "nextPageStart": 1000
 }
 ```
 
@@ -167,9 +171,9 @@ Gets the points for a user (potentially used for an airdrop).
 
 ```json
 {
-  "address": "0x4e5f7e4a774bd30b9bdca7eb84ce3681a71676e1",
-  "totalPoints": 104815,
-  "tier": "DIAMOND"
+    "address": "0x4e5f7e4a774bd30b9bdca7eb84ce3681a71676e1",
+    "totalPoints": 104815,
+    "tier": "DIAMOND"
 }
 ```
 
@@ -235,14 +239,14 @@ Gets a user by their id.
 
 ```json
 {
-  "id": 260,
-  "address": "0xc37fc40e16d50d287e9cd60fa5d6cbcf2d322afb",
-  "twitterUsername": "xingGorilla",
-  "twitterName": "xing",
-  "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1667533197998194688/wyCwlomw.jpg",
-  "twitterUserId": "887084056516583424",
-  "lastOnline": 1691755936186,
-  "lifetimeFeesCollectedInWei": "0"
+    "id": 260,
+    "address": "0xc37fc40e16d50d287e9cd60fa5d6cbcf2d322afb",
+    "twitterUsername": "xingGorilla",
+    "twitterName": "xing",
+    "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1667533197998194688/wyCwlomw.jpg",
+    "twitterUserId": "887084056516583424",
+    "lastOnline": 1691755936186,
+    "lifetimeFeesCollectedInWei": "0"
 }
 ```
 
@@ -271,15 +275,15 @@ curl 'https://prod-api.kosetto.com/search/users?username=d' \
 
 ```json
 {
-  "users": [
-    {
-      "address": "0xcb7a5d0c1074cd79ec001290ddecada17c275045",
-      "twitterUsername": "0xDCypher",
-      "twitterName": "DC",
-      "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1670206316059537408/LhXGeWp9.jpg",
-      "twitterUserId": "1389003409760600064"
-    }
-  ]
+    "users": [
+        {
+            "address": "0xcb7a5d0c1074cd79ec001290ddecada17c275045",
+            "twitterUsername": "0xDCypher",
+            "twitterName": "DC",
+            "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1670206316059537408/LhXGeWp9.jpg",
+            "twitterUserId": "1389003409760600064"
+        }
+    ]
 }
 ```
 
@@ -297,25 +301,25 @@ Gets a history of the 200 most recent trades.
 
 ```json
 {
-  "events": [
-    {
-      "id": 40613,
-      "blurredUrl": "https://mintcam.s3.us-east-1.amazonaws.com/next-s3-uploads/c13b1878-15ba-4cb6-bf67-913f102ade83/blurred.png",
-      "isNSFW": false,
-      "caption": null,
-      "value": "0",
-      "surplus": "0",
-      "previousOwner": "0x9E876bC45B9efd1113823dB655A9e33c6dCfD5b4",
-      "stealer": "0x9EA4039d038EF51C87774EC9197A3eD561A0Fb3F",
-      "creator": "0x9E876bC45B9efd1113823dB655A9e33c6dCfD5b4",
-      "previousOwnerPfpUrl": "https://pbs.twimg.com/profile_images/1652225412913586178/xF_r9KIW_normal.png",
-      "previousOwnerUsername": "staszv08",
-      "stealerPfpUrl": null,
-      "stealerUsername": null,
-      "creatorPfpUrl": "https://pbs.twimg.com/profile_images/1652225412913586178/xF_r9KIW_normal.png",
-      "creatorUsername": "staszv08"
-    }
-  ]
+    "events": [
+        {
+            "id": 40613,
+            "blurredUrl": "https://mintcam.s3.us-east-1.amazonaws.com/next-s3-uploads/c13b1878-15ba-4cb6-bf67-913f102ade83/blurred.png",
+            "isNSFW": false,
+            "caption": null,
+            "value": "0",
+            "surplus": "0",
+            "previousOwner": "0x9E876bC45B9efd1113823dB655A9e33c6dCfD5b4",
+            "stealer": "0x9EA4039d038EF51C87774EC9197A3eD561A0Fb3F",
+            "creator": "0x9E876bC45B9efd1113823dB655A9e33c6dCfD5b4",
+            "previousOwnerPfpUrl": "https://pbs.twimg.com/profile_images/1652225412913586178/xF_r9KIW_normal.png",
+            "previousOwnerUsername": "staszv08",
+            "stealerPfpUrl": null,
+            "stealerUsername": null,
+            "creatorPfpUrl": "https://pbs.twimg.com/profile_images/1652225412913586178/xF_r9KIW_normal.png",
+            "creatorUsername": "staszv08"
+        }
+    ]
 }
 ```
 
@@ -333,20 +337,20 @@ Gets a list of users by their token price
 
 ```json
 {
-  "users": [
-    {
-      "id": 11,
-      "address": "0xfd7232e66a69e1ae01e1e0ea8fab4776e2d325a9",
-      "twitterUsername": "0xRacerAlt",
-      "twitterName": "Racer",
-      "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1688403387090673665/HOhwOdYd.jpg",
-      "twitterUserId": "1455020265520435201",
-      "lastOnline": 1691760917233,
-      "displayPrice": "3025000000000000000",
-      "holderCount": 149,
-      "shareSupply": 219
-    }
-  ]
+    "users": [
+        {
+            "id": 11,
+            "address": "0xfd7232e66a69e1ae01e1e0ea8fab4776e2d325a9",
+            "twitterUsername": "0xRacerAlt",
+            "twitterName": "Racer",
+            "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1688403387090673665/HOhwOdYd.jpg",
+            "twitterUserId": "1455020265520435201",
+            "lastOnline": 1691760917233,
+            "displayPrice": "3025000000000000000",
+            "holderCount": 149,
+            "shareSupply": 219
+        }
+    ]
 }
 ```
 
@@ -364,17 +368,17 @@ Gets a list of trending users
 
 ```json
 {
-  "users": [
-    {
-     "twitterUsername": "Christianeth",
-     "twitterName": "Christian2022.mid",
-     "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1693173548796563456/Z6Qj2ETo_400x400.jpg",
-     "lastOnline": 0,
-     "displayPrice": "1580062500000000000",
-     "volume": "27606875000000000000",
-     "netBuy": "27606875000000000000"
-    }
-  ]
+    "users": [
+        {
+            "twitterUsername": "Christianeth",
+            "twitterName": "Christian2022.mid",
+            "twitterPfpUrl": "https://pbs.twimg.com/profile_images/1693173548796563456/Z6Qj2ETo_400x400.jpg",
+            "lastOnline": 0,
+            "displayPrice": "1580062500000000000",
+            "volume": "27606875000000000000",
+            "netBuy": "27606875000000000000"
+        }
+    ]
 }
 ```
 
@@ -414,12 +418,12 @@ Gets the contract config previously used for the Kosetto NFT (rugged).
 
 ```json
 {
-  "minAppVersionIOS": "1.0.0",
-  "minAppVersionAndroid": "1.0.0",
-  "gachaCost": 700,
-  "network": "ethereum",
-  "contractAddress": "0x4822d507d32b520a217183ae4344e0cece873599",
-  "gachaLaunchMs": 1674282060000
+    "minAppVersionIOS": "1.0.0",
+    "minAppVersionAndroid": "1.0.0",
+    "gachaCost": 700,
+    "network": "ethereum",
+    "contractAddress": "0x4822d507d32b520a217183ae4344e0cece873599",
+    "gachaLaunchMs": 1674282060000
 }
 ```
 

@@ -25,7 +25,7 @@ const endpoints = [
         name: 'User Details',
         value: 'getUserDetails',
         description: 'Get details for a specific user.',
-        inputs: ['Address'],
+        inputs: ['Address', 'Auth Token'],
     },
     {
         name: 'Search Users by Twitter Handle',
@@ -66,8 +66,10 @@ const ResponseComponent: React.FC<Props> = ({ response, onSendRequest }) => {
     const [authToken, setAuthToken] = useState('');
     const [username, setUsername] = useState('');
     const [selectedNode, setSelectedNode] = useState<any>(response);
+    const [requestLoading, setRequestLoading] = useState<boolean>(false);
 
-    const handleRequest = () => {
+    const handleRequest = async () => {
+        setRequestLoading(true);
         const endpointConfig = endpoints.find((endpoint) => endpoint.value === selectedEndpoint);
         const parameters: any = {};
         if (endpointConfig?.inputs?.includes('Address')) {
@@ -79,7 +81,8 @@ const ResponseComponent: React.FC<Props> = ({ response, onSendRequest }) => {
         if (endpointConfig?.inputs?.includes('Username')) {
             parameters.username = username;
         }
-        onSendRequest(selectedEndpoint, parameters);
+        await onSendRequest(selectedEndpoint, parameters);
+        setRequestLoading(false);
     };
 
     // A recursive function to render data as cards
@@ -116,7 +119,11 @@ const ResponseComponent: React.FC<Props> = ({ response, onSendRequest }) => {
 
     const renderContent = () => {
         if (activeTab === 'json') {
-            return <pre className="whitespace-pre-wrap break-all">{JSON.stringify(response, null, 2)}</pre>;
+            return (
+                <pre className="whitespace-pre-wrap break-all">
+                    {JSON.stringify(response, null, 2)}
+                </pre>
+            );
         } else if (activeTab === 'tree') {
             return <ReactJson src={response} enableClipboard={false} displayDataTypes={false} />;
         } else if (activeTab === 'rendered') {
@@ -157,7 +164,7 @@ const ResponseComponent: React.FC<Props> = ({ response, onSendRequest }) => {
                     onClick={handleRequest}
                     className="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none focus:bg-blue-700 transition duration-150 ease-in-out w-full md:w-auto"
                 >
-                    Send Request
+                    {requestLoading ? 'Loading...' : 'Send Request'}
                 </button>
             </div>
             {selectedInputs.includes('Address') && (
@@ -207,7 +214,6 @@ const ResponseComponent: React.FC<Props> = ({ response, onSendRequest }) => {
                 >
                     Rendered
                 </button>
-
             </div>
             <div className="text-sm md:text-base bg-gray-100 dark:bg-gray-700 p-4 rounded overflow-x-auto text-gray-800 dark:text-gray-300 border border-gray-300 dark:border-gray-600 max-h-[800px] overflow-y-auto">
                 {renderContent()}

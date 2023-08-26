@@ -10,6 +10,7 @@ import {
     getTopListByPrice,
     getTrending,
     getKosettoConfig,
+    searchUsersByTwitterHandle,
 } from './api/endpoints';
 
 const Home = () => {
@@ -23,7 +24,7 @@ const Home = () => {
                 result = await getEvents();
                 break;
             case 'getUserDetails':
-                result = await getUserDetails(parameters.address);
+                result = await getUserDetails(parameters.address, parameters.authToken);
                 break;
             case 'getHoldingsActivity':
                 result = await getHoldingsActivity(parameters.address);
@@ -36,6 +37,12 @@ const Home = () => {
                 break;
             case 'getPoints':
                 result = await getPoints(parameters.address);
+                break;
+            case 'searchUsersByTwitterHandle':
+                result = await searchUsersByTwitterHandle(
+                    parameters.username,
+                    parameters.authToken,
+                );
                 break;
             case 'getTopListByPrice':
                 result = await getTopListByPrice();

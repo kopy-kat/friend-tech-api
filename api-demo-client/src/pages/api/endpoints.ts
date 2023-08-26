@@ -32,9 +32,14 @@ const handleError = (error: any): ErrorResponse => {
 };
 
 // User Endpoints
-export const getUserDetails = async (address: string): Promise<UserDetails | ErrorResponse> => {
+export const getUserDetails = async (
+    address: string,
+    authToken: string,
+): Promise<UserDetails | ErrorResponse> => {
     try {
-        const response = await apiClient.get<UserDetails>(`/users/${address}`);
+        const response = await apiClient.get<UserDetails>(`/users/${address}`, {
+            headers: getHeaders(authToken),
+        });
         return response.data;
     } catch (error) {
         return handleError(error);
